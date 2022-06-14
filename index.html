@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Pizza Delivery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Select Pizza</h1>
+    <div class="select-item">
+      <img src="assets/images/pizza1.jpg" style="width: 200px; height: 150px" />
+      <div class="description">
+        <h1>Pizza 1</h1>
+        <div class="price-item">$8</div>
+        <input type="radio" id="variant1" onchange="pizzaVariant()" name="item-pizza" value="8" />
+      </div>
+    </div>
+    <div class="select-item">
+      <img src="assets/images/pizza2.jpg" style="width: 200px; height: 150px" />
+      <div class="description">
+        <h1>Pizza 2</h1>
+        <div class="price-item">$10</div>
+        <input type="radio" id="variant2" onchange="pizzaVariant()" name="item-pizza" value="10" />
+      </div>
+    </div>
+
+    <div class="select-item">
+      <img src="assets/images/pizza3.jpg" style="width: 200px; height: 150px" />
+      <div class="description">
+        <h1>Pizza 3</h1>
+        <div class="price-item">$12</div>
+        <input type="radio" id="variant3" onchange="pizzaVariant()" name="item-pizza" value="12" />
+      </div>
+    </div>
+
+    <h1>Select Size</h1>
+    <div class="select-size">
+      <div class="description">
+        <h2>Small</h2>
+        <input type="radio" name="item-size" id="small" onchange="pizzaVariant()" value="Small" />
+      </div>
+    </div>
+
+    <div class="select-size">
+      <div class="description">
+        <h2>Medium</h2>
+        <input type="radio" name="item-size" id="medium" onchange="pizzaVariant()" value="Medium" checked />
+      </div>
+    </div>
+
+    <div class="select-size">
+      <div class="description">
+        <h2>Large</h2>
+        <input type="radio" name="item-size" id="large" onchange="pizzaVariant()" value="Large" />
+      </div>
+    </div>
+
+    <h1>Select Toppings</h1>
+    <div class="select-toppings">
+      <input type="checkbox" id="avocado" onclick="calc(this)" name="item-toppings" value="1" />
+      Avocado
+      <br />
+      <input type="checkbox" id="broccoli" onclick="calc(this)" name="item-toppings" value="1" />
+      Broccoli
+      <br />
+      <input type="checkbox" id="onions" onclick="calc(this)" name="item-toppings" value="1" />
+      Onions
+      <br />
+      <input type="checkbox" id="zucchini" onclick="calc(this)" name="item-toppings" value="1" />
+      Zucchini
+      <br />
+    </div>
+
+    <div class="select-toppings">
+      <input type="checkbox" id="lobster" onclick="calc(this)" name="item-toppings" value="2" />
+      Lobster
+      <br />
+      <input type="checkbox" id="oyster" onclick="calc(this)" name="item-toppings" value="2" />
+      Oyster
+      <br />
+      <input type="checkbox" id="salmon" onclick="calc(this)" name="item-toppings" value="2" />
+      Salmon
+      <br />
+      <input type="checkbox" id="tuna" onclick="calc(this)" name="item-toppings" value="2" />
+      Tuna
+      <br />
+    </div>
+    <div class="select-toppings">
+      <input type="checkbox" id="bacon" onclick="calc(this)" name="item-toppings" value="3" />
+      Bacon
+      <br />
+      <input type="checkbox" id="duck" onclick="calc(this)" name="item-toppings" value="3" />
+      Duck
+      <br />
+      <input type="checkbox" id="ham" onclick="calc(this)" name="item-toppings" value="3" /> Ham
+      <br />
+      <input type="checkbox" id="sausage" onclick="calc(this)" name="item-toppings" value="3" />
+      Sausage
+      <br />
+    </div>
+    <h1>Totals</h1>
+
+    <h2>$<label id="totals"></label></h2>
+  </div>
+</body>
+
+</html>
+
+<script>
+
+  function calc(get_value) {
+    // alert(get_value.checked);
+    if (get_value.checked == false) {
+      document.getElementById("totals").innerHTML = eval(document.getElementById("totals").innerHTML) - eval(get_value.value);
+    } else {
+      document.getElementById("totals").innerHTML = eval(document.getElementById("totals").innerHTML) + eval(get_value.value);
+    }
+
+  }
+  function pizzaVariant() {
+    var totals = document.getElementById("totals");
+
+    if (document.getElementById("variant1").checked) {
+
+      document.getElementById("avocado").disabled = false;
+      document.getElementById("broccoli").disabled = false;
+      document.getElementById("onions").disabled = false;
+      document.getElementById("zucchini").disabled = false;
+      document.getElementById("lobster").disabled = true;
+      document.getElementById("oyster").disabled = true;
+      document.getElementById("salmon").disabled = true;
+      document.getElementById("tuna").disabled = false;
+      document.getElementById("bacon").disabled = true;
+      document.getElementById("duck").disabled = true;
+      document.getElementById("ham").disabled = false;
+      document.getElementById("sausage").disabled = true;
+
+      if (document.getElementById("small").checked) {
+        var totalFinals = document.getElementById("variant1").value - "1";
+        totals.innerHTML = totalFinals;
+      } else if (document.getElementById("large").checked) {
+        var totalFinals =
+          parseInt(document.getElementById("variant1").value) + parseInt("2");
+        totals.innerHTML = totalFinals;
+      } else {
+        totals.innerHTML = document.getElementById("variant1").value;
+      }
+    }
+
+    else if (document.getElementById("variant2").checked) {
+      document.getElementById("avocado").disabled = true;
+      document.getElementById("broccoli").disabled = false;
+      document.getElementById("onions").disabled = false;
+      document.getElementById("zucchini").disabled = false;
+      document.getElementById("lobster").disabled = false;
+      document.getElementById("oyster").disabled = false;
+      document.getElementById("salmon").disabled = false;
+      document.getElementById("tuna").disabled = true;
+      document.getElementById("bacon").disabled = false;
+      document.getElementById("duck").disabled = true;
+      document.getElementById("ham").disabled = false;
+      document.getElementById("sausage").disabled = true;
+
+      if (document.getElementById("small").checked) {
+        var totalFinals = document.getElementById("variant2").value - "1";
+        totals.innerHTML = totalFinals;
+      } else if (document.getElementById("large").checked) {
+        var totalFinals =
+          parseInt(document.getElementById("variant2").value) + parseInt("2");
+        totals.innerHTML = totalFinals;
+      } else {
+        totals.innerHTML = document.getElementById("variant2").value;
+      }
+    }
+
+    else if (document.getElementById("variant3").checked) {
+      document.getElementById("avocado").disabled = true;
+      document.getElementById("broccoli").disabled = false;
+      document.getElementById("onions").disabled = false;
+      document.getElementById("zucchini").disabled = false;
+      document.getElementById("lobster").disabled = true;
+      document.getElementById("oyster").disabled = true;
+      document.getElementById("salmon").disabled = true;
+      document.getElementById("tuna").disabled = false;
+      document.getElementById("bacon").disabled = false;
+      document.getElementById("duck").disabled = false;
+      document.getElementById("ham").disabled = false;
+      document.getElementById("sausage").disabled = false;
+
+      if (document.getElementById("small").checked) {
+        var totalFinals = document.getElementById("variant3").value - "1";
+        totals.innerHTML = totalFinals;
+      } else if (document.getElementById("large").checked) {
+        var totalFinals =
+          parseInt(document.getElementById("variant3").value) + parseInt("2");
+        totals.innerHTML = totalFinals;
+      } else {
+        totals.innerHTML = document.getElementById("variant3").value;
+      }
+    }
+  }
+</script>
